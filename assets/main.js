@@ -181,12 +181,13 @@ function comment(x) {
 		var specificComments = new SpecificElementCommentsWater();
 		var elementComments = new ElementCommentsWater();
 		
-		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, hardnessLevel) 
+		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel) 
 		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements)
 		+ specificComments.acidPhComment(primeSatisfactoryElements)
 		+ specificComments.areThereNoValues(allElements, nonSatisfactoryElements, allElementsMoreThanRaised, raisedElements, primeSatisfactoryElements)
 		+ specificComments.sodiumChlorideComment(naLevel, clLevel, tdsLevel)
 		+ elementComments.printAllElementComments(sortedElements, allElements, raisedElements)
+		+ specificComments.sodiumChlorideCommentGeneral(naLevel, clLevel)
 		+ specificComments.magnesiumChlorideComment(allElementsMoreThanRaised, mgLevel, clLevel)
 		+ specificComments.seperateIronManganeseAluminium(allElementsMoreThanRaised, seperatedMetalElements)
 		+ specificComments.seperateAmmoniaNitratePotassium(allElementsMoreThanSatisfactory, ammoniaNitratePotassium)
@@ -197,7 +198,7 @@ function comment(x) {
 		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsRaisedAndHigh) 
 		+ specificComments.sodiumComment(naLevel)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
-		+ specificComments.summaryComment(extremelyHighElements, veryHighElements, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel)
+		+ specificComments.summaryComment(extremelyHighElements, veryHighElements, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, highElements)
 		+ specificComments.noLead(allElements, pbLevel); 
 	
 	} else if (x === 'micro') {
