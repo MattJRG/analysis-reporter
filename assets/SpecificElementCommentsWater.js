@@ -309,7 +309,7 @@ function SpecificElementCommentsWater(){
 
 	this.sodiumChlorideCommentGeneral = function(naLevel, clLevel) {
 		if (naLevel >= 200 && clLevel >= 350) {
-			return " The Sodium Chloride level is equivalent to a Salt level of " + Math.round((naLevel + clLevel)/100)/10 + "g/litre (" + Math.round((naLevel + clLevel)/100)/10/10 + "%).";
+			return " The Sodium Chloride level is equivalent to a Salt level of " + Math.round((naLevel + clLevel)/100)/10 + "g/litre (" + (Math.round((naLevel + clLevel)/100)/10/10).toFixed(2) + "%).";
 		} else {
 			return "";
 		}
