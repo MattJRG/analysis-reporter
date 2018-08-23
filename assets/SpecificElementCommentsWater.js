@@ -130,7 +130,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements) {
+	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, veryHighElements) {
 
 		if (arrayContainsElement(primeHighElements, "pH") === true || (arrayContainsElement(primeVeryHighElements, "pH") === true)&& hardnessLevel < 175) {
 			return "which is very unusual given the “soft” nature of this supply. This analysis is not able to determine the source of this high pH. As it is outside the target pH for " + this.livestockOrPoultry() + ", there is a risk that it will reduce the efficiency of digestion and nutrient absorption.";
