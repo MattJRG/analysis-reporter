@@ -228,8 +228,9 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.secondIronManganeseComment = function(allElementsMoreThanRaised, mnLevel, feLevel, satisfactoryElements) {
-		if (arrayContainsElement(allElementsMoreThanRaised, "Manganese") === true && mnLevel < 450 && arrayContainsElement(satisfactoryElements, "Iron") === true) {
+	this.secondIronManganeseComment = function(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess) {
+		console.log(allElementsMoreThanRaised);
+		if (arrayContainsElement(allElementsMoreThanRaised, "Manganese") === true && mnLevel < 450 && arrayContainsElement(allElementsRaisedAndLess, "Iron") === true) {
 			return " To minimise these possible problems, the supply should be well aerated before " + this.livestockOrPoultry() + " have access to it.  This can be achieved by pumping into a header tank for example, which will oxidise the Manganese and thereby reduce its potentially deleterious effects.";
 		}
 		if (arrayContainsElement(allElementsMoreThanRaised, "Iron") === true && feLevel < 1000 && mnLevel <= 50) {
@@ -357,14 +358,14 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.summaryComment = function(extremelyHighElements, veryHighElements, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, highElements) {
+	this.summaryComment = function(allElementsMoreThanHigh, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, highElements) {
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {
 			return " On the basis of this analysis, this supply is not fit for livestock use and advice should be sought on appropriate treatment options designed to reduce the high Salt concentration. As this may involve considerable cost, an alternative	action would be to dilute this supply on a 50:50 basis with mains water and to remove any supplementary Sodium (salt) from feed materials and supplements."
-		} else if (extremelyHighElements.length > 0 || veryHighElements > 0 || highElements > 0 || mnLevel >= 450 || feLevel >= 1000 && forPoultry.checked === true && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
+		} else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
 			return " As poultry have a limited tolerance to Salt this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
-		} else if (extremelyHighElements.length > 0|| veryHighElements > 0 || mnLevel >= 450 || feLevel >= 1000) {
+		} else if (allElementsMoreThanHigh.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
 			return " On the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length) + this.concentrationPlural(allElementsMoreThanHigh);
 		} else if (allElementsMoreThanRaised.length === 0 && arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === false) {
 			return " Consequently, from a mineral perspective this supply is suitable for " + this.livestockOrPoultry() + " use."; //UNLESS Sodium or Sulphate is elevated attempted to fix above but needs testing

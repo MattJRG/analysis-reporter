@@ -156,6 +156,8 @@ function comment(x) {
 
 		var allElementsMoreThanRaised = highElements.concat(veryHighElements).concat(extremelyHighElements);
 
+		var allElementsRaisedAndLess = satisfactoryElements.concat(raisedElements);
+
 		var allElementsMoreThanHigh = veryHighElements.concat(extremelyHighElements);
 
 		var allElementsRaisedAndHigh = raisedElements.concat(highElements);
@@ -193,7 +195,7 @@ function comment(x) {
 		+ specificComments.seperateAmmoniaNitratePotassium(allElementsMoreThanSatisfactory, ammoniaNitratePotassium)
 		+ specificComments.phosphorusComment(veryHighElements, highElements)
 		+ specificComments.firstIronManganeseComment(seperatedMetalElements, allElements)
-		+ specificComments.secondIronManganeseComment(allElementsMoreThanRaised, mnLevel, feLevel, satisfactoryElements)
+		+ specificComments.secondIronManganeseComment(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess)
 		+ specificComments.sulphateComment(so4Level)
 		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsRaisedAndHigh) 
 		+ specificComments.sodiumComment(naLevel)
