@@ -358,7 +358,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.summaryComment = function(allElementsMoreThanHigh, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, highElements) {
+	this.summaryComment = function(allElementsMoreThanHigh, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {

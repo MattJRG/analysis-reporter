@@ -200,7 +200,7 @@ function comment(x) {
 		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsRaisedAndHigh) 
 		+ specificComments.sodiumComment(naLevel)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
-		+ specificComments.summaryComment(extremelyHighElements, veryHighElements, allElements, allElementsMoreThanHigh, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, highElements)
+		+ specificComments.summaryComment(allElementsMoreThanHigh, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel)
 		+ specificComments.noLead(allElements, pbLevel); 
 	
 	} else if (x === 'micro') {
