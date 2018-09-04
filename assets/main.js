@@ -160,6 +160,8 @@ function comment(x) {
 
 		var allElementsMoreThanHigh = veryHighElements.concat(extremelyHighElements);
 
+		var allElementsMoreThanHighLessSodium = veryHighElements.concat(extremelyHighElements);
+
 		var allElementsRaisedAndHigh = raisedElements.concat(highElements);
 
 		var seperatedMetalElements = [];
@@ -182,6 +184,8 @@ function comment(x) {
 
 		var specificComments = new SpecificElementCommentsWater();
 		var elementComments = new ElementCommentsWater();
+
+		specificComments.removeSodium(allElementsMoreThanHighLessSodium, naLevel);
 		
 		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel) 
 		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, veryHighElements)
@@ -197,10 +201,10 @@ function comment(x) {
 		+ specificComments.firstIronManganeseComment(seperatedMetalElements, allElements)
 		+ specificComments.secondIronManganeseComment(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess)
 		+ specificComments.sulphateComment(so4Level)
-		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsRaisedAndHigh) 
+		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory) 
 		+ specificComments.sodiumComment(naLevel)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
-		+ specificComments.summaryComment(allElementsMoreThanHigh, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel)
+		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel)
 		+ specificComments.noLead(allElements, pbLevel); 
 	
 	} else if (x === 'micro') {

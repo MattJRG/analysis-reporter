@@ -272,7 +272,7 @@ function SpecificElementCommentsWater(){
 
 	this.sodiumComment = function(naLevel) {
 		if (naLevel > 200 && naLevel < 300 && forPoultry.checked === false) {
-			return " In terms of dietary intake, the Sodium level is equivalent to increasing the typical dairy diet concentration by 0.10% DM, which represents about a 50% increase. Consequently, this contribution should be accounted for when formulating diets for Sodium (Salt).";
+			return " In terms of dietary intake, the Sodium level is equivalent to increasing the typical dairy diet concentration by 0.10-0.15% DM, which represents about a 50% increase. Consequently, this contribution should be accounted for when formulating diets for Sodium (Salt).";
 		} else if (naLevel > 100 && naLevel <150 && forPoultry.checked === false) {
 			return " The Sodium intake from this water supply is equivalent to increasing the total dietary supply of a milking cow by about 0.15%DM. This contribution should be accounted for when formulating balancing mineral supplements or concentrates.";
 		} else {
@@ -280,7 +280,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.sodiumSulphateComment = function(veryHighElements, raisedElements, highElements, allElementsRaisedAndHigh) {
+	this.sodiumSulphateComment = function(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory) {
 		if (arrayContainsElement(veryHighElements, "Sodium") === true && arrayContainsElement(highElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " The presence of Sodium Sulphate will have a laxative effect on the cows and increase looseness and reduce nutrient absorption. Although at this level it should not represent a challenge to cow health it will increase the risk of nutritional scours for pre-weaned calves less than 3 months in age.";
 		} else if (arrayContainsElement(veryHighElements, "Sodium") === true && arrayContainsElement(veryHighElements, "Sulphate") === true && forPoultry.checked === false) {
@@ -288,8 +288,8 @@ function SpecificElementCommentsWater(){
 		} else if (arrayContainsElement(raisedElements, "Sodium") === true && arrayContainsElement(raisedElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " It should be noted that although the raised Sodium and Sulphate levels will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
 		} 
-		else if (arrayContainsElement(allElementsRaisedAndHigh, "Sodium") === true && arrayContainsElement(raisedElements, "Sulphate") === false && forPoultry.checked === false) {
-			return " It should be noted that although the raised Sodium level will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
+		else if (arrayContainsElement(allElementsMoreThanSatisfactory, "Sodium") === true && arrayContainsElement(raisedElements, "Sulphate") === false && forPoultry.checked === false) {
+			return " It should be noted that although the Sodium level will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
 		}
 		else if (arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " It should be noted that although the raised Sulphate level will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
@@ -350,23 +350,33 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.concentrationPlural = function(allElementsMoreThanHigh) {
-		if (allElementsMoreThanHigh.length >= 2){
+	this.concentrationPlural = function(array) {
+		if (array.length >= 2){
 			return " concentrations.";
 		} else {
 			return " concentration.";
 		}
 	}
 
-	this.summaryComment = function(allElementsMoreThanHigh, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
+	this.removeSodium = function(allElementsMoreThanHighLessSodium, naLevel){
+
+		for (var i=0; i<allElementsMoreThanHighLessSodium.length; i++){
+			if (allElementsMoreThanHighLessSodium[i].name === "Sodium" && naLevel < 500) {
+				allElementsMoreThanHighLessSodium.splice([i], 1);
+			}
+		}
+	}
+
+	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
+		console.log(allElementsMoreThanHighLessSodium);
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {
 			return " On the basis of this analysis, this supply is not fit for livestock use and advice should be sought on appropriate treatment options designed to reduce the high Salt concentration. As this may involve considerable cost, an alternative	action would be to dilute this supply on a 50:50 basis with mains water and to remove any supplementary Sodium (salt) from feed materials and supplements."
 		} else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
 			return " As poultry have a limited tolerance to Salt this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
-		} else if (allElementsMoreThanHigh.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
-			return " On the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length) + this.concentrationPlural(allElementsMoreThanHigh);
+		} else if (allElementsMoreThanHighLessSodium.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
+			return " On the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHighLessSodium, allElements.length) + this.concentrationPlural(allElementsMoreThanHighLessSodium);
 		} else if (allElementsMoreThanRaised.length === 0 && arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === false) {
 			return " Consequently, from a mineral perspective this supply is suitable for " + this.livestockOrPoultry() + " use."; //UNLESS Sodium or Sulphate is elevated attempted to fix above but needs testing
 		} else {
