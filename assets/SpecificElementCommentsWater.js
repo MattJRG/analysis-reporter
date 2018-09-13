@@ -46,9 +46,9 @@ function SpecificElementCommentsWater(){
 		   }
 	}
 
-	this.phInitialComment = function(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel) {
+	this.phInitialComment = function(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel, hardnessLevel) {
 		if (arrayContainsElement(primeSatisfactoryElements, "pH") === true) {
-			return "Water sample has a slightly acidic pH due to the “soft” nature of this supply, which in turn is related to the low Calcium level. The water pH may slightly increase the risk of rumen acidosis in cows receiving a high starch diet, particularly if forages being fed have a high acid load.";
+			return "Water sample has a slightly acidic pH due to the" + this.howSoftComment(hardnessLevel) + "“soft” nature of this supply, which in turn is related to the low Calcium level. The water pH may slightly increase the risk of rumen acidosis in cows receiving a high starch diet, particularly if forages being fed have a high acid load.";
 		}
 		if (arrayContainsElement(primeRaisedElements, "pH") === true && phLevel < 8.0) {
 			return "This water sample has a pH within the target range and can be characterised ";
@@ -131,6 +131,7 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, veryHighElements) {
+		console.log(hardnessLevel);
 
 		if (arrayContainsElement(primeHighElements, "pH") === true || (arrayContainsElement(primeVeryHighElements, "pH") === true)&& hardnessLevel < 175) {
 			return "which is very unusual given the “soft” nature of this supply. This analysis is not able to determine the source of this high pH. As it is outside the target pH for " + this.livestockOrPoultry() + ", there is a risk that it will reduce the efficiency of digestion and nutrient absorption.";
@@ -138,7 +139,6 @@ function SpecificElementCommentsWater(){
 		if (arrayContainsElement(primeHighElements, "pH") === true || (arrayContainsElement(primeVeryHighElements, "pH") === true) && hardnessLevel > 175) {
 			return "and can be characterised as “hard” " + this.calciumMagnesiumHard(caLevel, mgLevel) + "This analysis is not able to determine the source of this high pH. As it is outside the target pH for " + this.livestockOrPoultry() + ", there is a risk that it will reduce the efficiency of digestion and nutrient absorption.";
 		}
-		
 		if (hardnessLevel <= 175 && arrayContainsElement(primeSatisfactoryElements, "pH") === false) {
 			return "as" + this.howSoftComment(hardnessLevel) + "“soft” " + this.calciumMagnesiumLow(caLevel, mgLevel);
 		}
@@ -368,11 +368,10 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
-		console.log(allElementsMoreThanHighLessSodium);
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {
-			return " On the basis of this analysis, this supply is not fit for livestock use and advice should be sought on appropriate treatment options designed to reduce the high Salt concentration. As this may involve considerable cost, an alternative	action would be to dilute this supply on a 50:50 basis with mains water and to remove any supplementary Sodium (salt) from feed materials and supplements."
+			return " On the basis of this analysis, this supply is not fit for livestock use and advice should be sought on appropriate treatment options designed to reduce the high Salt concentration. As this may involve considerable cost, an alternative	action would be to dilute this supply on a 50:50 basis with mains water and to remove any supplementary Sodium (salt) from feed materials and supplements.";
 		} else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
 			return " As poultry have a limited tolerance to Salt this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
 		} else if (allElementsMoreThanHighLessSodium.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
@@ -388,7 +387,7 @@ function SpecificElementCommentsWater(){
 		if (allElements.length < 15) {
 			return "";
 		} else if (pbLevel){
-			return ""
+			return "";
 		} else {
 			return " Please note Lead has not been analysed in this sample. If you require a Lead analysis, then please contact Julie or Matt (01603 781217).";
 		}
