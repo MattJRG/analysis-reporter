@@ -462,7 +462,7 @@ function clearPage(x){
 		document.getElementById("campylobacterMicro").value = "";
 		document.getElementById("clostridiumMicro").value = "";
 		document.getElementById("pseudomonasMicro").value = "";
-		document.getElementById("humanCheckboxMicro").checked = false;
+		document.getElementById("humanCheckbox").checked = false;
 	}
 };
 
