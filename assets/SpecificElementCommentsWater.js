@@ -333,7 +333,7 @@ function SpecificElementCommentsWater(){
 		if (nh4Level <= 2 && forPoultry.checked === false){
 			return "although not adverse to livestock,"
 		} else if (nh4Level >= 2 && forPoultry.checked === false) {
-			return "although not adverse to adult livestock at the reported level, it"
+			return "although not adverse to adult livestock at the reported level,"
 		} else if (nh4Level >=  1 && forPoultry.checked === true){
 			return " could be a risk to poultry and"
 		} else if (nh4Level <= 1 && forPoultry.checked === true){
