@@ -186,9 +186,11 @@ function comment(x) {
 		var elementComments = new ElementCommentsWater();
 
 		specificComments.removeSodium(allElementsMoreThanHighLessSodium, naLevel);
+
+		console.log(allElements);
 		
 		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel, hardnessLevel) 
-		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, veryHighElements)
+		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, naLevel)
 		+ specificComments.acidPhComment(primeSatisfactoryElements)
 		+ specificComments.areThereNoValues(allElements, nonSatisfactoryElements, allElementsMoreThanRaised, raisedElements, primeSatisfactoryElements)
 		+ specificComments.sodiumChlorideComment(naLevel, clLevel, tdsLevel)

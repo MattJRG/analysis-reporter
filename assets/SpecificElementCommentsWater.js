@@ -130,7 +130,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, veryHighElements) {
+	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, naLevel) {
 		console.log(hardnessLevel);
 
 		if (arrayContainsElement(primeHighElements, "pH") === true || (arrayContainsElement(primeVeryHighElements, "pH") === true)&& hardnessLevel < 175) {
@@ -142,8 +142,8 @@ function SpecificElementCommentsWater(){
 		if (hardnessLevel <= 175 && arrayContainsElement(primeSatisfactoryElements, "pH") === false) {
 			return "as" + this.howSoftComment(hardnessLevel) + "“soft” " + this.calciumMagnesiumLow(caLevel, mgLevel);
 		}
-		if (hardnessLevel >= 175 && arrayContainsElement(veryHighElements, "Sodium") === true) {
-			return "as" + this.howHardComment(hardnessLevel) + "“soft” " + this.calciumMagnesiumHard(caLevel, mgLevel);
+		if (hardnessLevel >= 175 && naLevel >= 140) {
+			return "as “soft” due to the high salt content.";
 		}
 		if (hardnessLevel >= 175) {
 			return "as" + this.howHardComment(hardnessLevel) + "“hard” " + this.calciumMagnesiumHard(caLevel, mgLevel) + this.hardnessAdverseComment(hardnessLevel);
@@ -367,6 +367,14 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
+	this.summaryCommentHowever = function(naLevel){
+		if (naLevel < 200 && naLevel > 50) {
+			return " However, on ";
+		} else {
+			return " On ";
+		}
+	}
+
 	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
 		if (allElements.length < 15) {
 			return "";
@@ -375,7 +383,7 @@ function SpecificElementCommentsWater(){
 		} else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
 			return " As poultry have a limited tolerance to Salt this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
 		} else if (allElementsMoreThanHighLessSodium.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
-			return " On the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHighLessSodium, allElements.length) + this.concentrationPlural(allElementsMoreThanHighLessSodium);
+			return this.summaryCommentHowever(naLevel) + " the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHighLessSodium, allElements.length) + this.concentrationPlural(allElementsMoreThanHighLessSodium);
 		} else if (allElementsMoreThanRaised.length === 0 && arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === false) {
 			return " Consequently, from a mineral perspective this supply is suitable for " + this.livestockOrPoultry() + " use."; //UNLESS Sodium or Sulphate is elevated attempted to fix above but needs testing
 		} else {
