@@ -22,7 +22,7 @@ function comment(x) {
 			elements.push(manganese); 
 			elements.push(zinc);
 			elements.push(copper);
-			elements.push(molybdenum);
+			elements.push(molybdenum); 
 			elements.push(iodine);
 			elements.push(selenium);
 
