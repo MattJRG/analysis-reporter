@@ -4,7 +4,9 @@ function SpecificElementCommentsMilk(){
 
 	this.mainSatisfactory = function(satisfactoryElements, allElements, cuLevel, moLevel){
 		
-		if (satisfactoryElements.length === allElements.length && moLevel <50) {
+		if (satisfactoryElements.length === allElements.length && moLevel - 5 <= cuLevel) {
+			return " Based on this report there is a high probability that trace element supplementation is both appropriate to and well balanced in the total diet.";
+		} else if (satisfactoryElements.length === allElements.length && moLevel < 50){
 			return " Based on this report there is a high probability that trace element supplementation is both appropriate to and well balanced in the total diet.";
 		} else {
 			return "";
@@ -48,18 +50,6 @@ function SpecificElementCommentsMilk(){
 
 		if (arrayContainsElement(allElementsMoreThanSatisfactory, "Iodine") === true) {
 			return " High Iodine may be partly due to contamination arising from the use of Iodine based parlour chemicals and teat dips. ";
-
-		/*if (arrayContainsElement(veryHighElements, "Iodine") === true || arrayContainsElement(highElements, "Iodine") === true || arrayContainsElement(extremelyHighElements, "Iodine") === true) {
-			return "High Iodine may be partly due to contamination arising from the use of Iodine based parlour chemicals and teat dips. ";
-		/*	}
-		if (arrayContainsElement(highElements, "Iodine") === true) {
-			return "High Iodine may be partly due to contamination arising from the use of Iodine based parlour chemicals and teat dips. ";
-		}
-		if (arrayContainsElement(veryHighElements, "Iodine") === true) {
-			return "The very high Iodine may be partly due to contamination arising from the use of Iodine based parlour chemicals and teat dips. ";
-		}
-		if (arrayContainsElement(extremelyHighElements, "Iodine") === true) {
-			return "The extremely high Iodine may be partly due to contamination arising from the use of Iodine based parlour chemicals and teat dips. ";*/
 		} else {
 			return "";
 		}
@@ -69,18 +59,6 @@ function SpecificElementCommentsMilk(){
 		
 		if (arrayContainsElement(allElementsMoreThanSatisfactory, "Manganese") === true) {
 			return " High Manganese is generally due to the inclusion of forages in the diet, which have an inherently high Manganese concentration.";
-
-		/*if (arrayContainsElement(veryHighElements, "Manganese") === true || arrayContainsElement(highElements, "Manganese") === true || arrayContainsElement(extremelyHighElements, "Manganese") === true) {
-			return "High Manganese is generally due to the inclusion of forages in the diet, which have an inherently high Manganese concentration. ";
-		/*	}
-		if (arrayContainsElement(highElements, "Manganese") === true) {
-			return "High Manganese is generally due to the inclusion of forages in the diet, which have an inherently high Manganese concentration. ";
-		}
-		if (arrayContainsElement(veryHighElements, "Manganese") === true) {
-			return "The very high Manganese is generally due to the inclusion of forages in the diet, which have an inherently high Manganese concentration. ";
-		}
-		if (arrayContainsElement(extremelyHighElements, "Manganese") === true) {
-			return "The extremely high Manganese is generally due to the inclusion of forages in the diet, which have an inherently high Manganese concentration. ";*/
 		} else {
 			return "";
 		}
@@ -90,18 +68,6 @@ function SpecificElementCommentsMilk(){
 		
 		if (arrayContainsElement(allElementsMoreThanSatisfactory, "Selenium") === true) {
 			return " High Selenium, probably due to the inclusion of Selenium yeast in the diet or to inherently high Selenium forages, is likely to be beneficial in terms of udder health. No risk of Selenium toxicity is apparent from this analysis.";
-
-		/*if (arrayContainsElement(veryHighElements, "Selenium") === true || arrayContainsElement(highElements, "Selenium") === true || arrayContainsElement(extremelyHighElements, "Selenium") === true) {
-			return "High Selenium, probably due to the inclusion of Selenium yeast in the diet or to inherently high Selenium forages, is likely to be beneficial in terms of udder health. No risk of Selenium toxicity is apparent from this analysis. ";
-		/*	}
-		if (arrayContainsElement(highElements, "Selenium") === true) {
-			return "High Selenium, probably due to the inclusion of Selenium yeast in the diet or to inherently high Selenium forages, is likely to be beneficial in terms of udder health. No risk of Selenium toxicity is apparent from this analysis. ";
-		}
-		if (arrayContainsElement(veryHighElements, "Selenium") === true) {
-			return "The very High Selenium, probably due to the inclusion of Selenium yeast in the diet or to inherently high Selenium forages, is likely to be beneficial in terms of udder health. No risk of Selenium toxicity is apparent from this analysis. ";
-		}
-		if (arrayContainsElement(extremelyHighElements, "Selenium") === true) {
-			return "The extremelyHigh Selenium, probably due to the inclusion of Selenium yeast in the diet or to inherently high Selenium forages, is likely to be beneficial in terms of udder health. No risk of Selenium toxicity is apparent from this analysis. ";*/
 		} else {
 			return "";
 		}
@@ -110,7 +76,7 @@ function SpecificElementCommentsMilk(){
 	// Combine all comment functions under a big function
 	// introduce comments to historic data
 
-	this.removeMolybdenum = function(nonSatisfactoryElementsLessMolybdenum, satisfactoryElements, moLevel){
+	this.removeMolybdenum = function(nonSatisfactoryElementsLessMolybdenum, satisfactoryElements, moLevel, moderateElements, molybdenum){
 
 		for (var i=0; i<nonSatisfactoryElementsLessMolybdenum.length; i++){
 			if (nonSatisfactoryElementsLessMolybdenum[i].name === "Molybdenum") {
@@ -121,6 +87,7 @@ function SpecificElementCommentsMilk(){
 		for (var i=0; i<satisfactoryElements.length; i++){
 			if (satisfactoryElements[i].name === "Molybdenum" && moLevel > 49) {
 				satisfactoryElements.splice([i], 1);
+				moderateElements.push(molybdenum);
 				//return satisfactoryElements;
 			}
 		}
@@ -138,8 +105,10 @@ function SpecificElementCommentsMilk(){
 
 	this.reviewCuHighMo = function(satisfactoryElements, allElements, allElementsMoreThanSatisfactory, cuLevel, moLevel){
 		
-		if (satisfactoryElements.length === allElements.length-1 && (arrayContainsElement(satisfactoryElements, "Copper") === true) && (arrayContainsElement(allElementsMoreThanSatisfactory, "Molybdenum") === true) && cuLevel < moLevel) {
+		if (satisfactoryElements.length === allElements.length-1 && (arrayContainsElement(satisfactoryElements, "Copper") === true) && (arrayContainsElement(allElementsMoreThanSatisfactory, "Molybdenum") === true) && cuLevel + 5 < moLevel) {
 			return " Based on this analysis the supplementation of Copper should be reviewed by reference to a forage mineral report to ensure it is sufficient to overcome any identified antagonism from Molybdenum.";
+		} else if (satisfactoryElements.length === allElements.length-1 && (arrayContainsElement(satisfactoryElements, "Copper") === true) && (arrayContainsElement(allElementsMoreThanSatisfactory, "Molybdenum") === true) && cuLevel + 5 >= moLevel){
+			return " Based on this report there is a high probability that trace element supplementation is both appropriate to and well balanced in the total diet."
 		} else {
 			return "";
 		}

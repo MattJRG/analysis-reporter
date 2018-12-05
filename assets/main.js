@@ -31,12 +31,14 @@ function comment(x) {
 		var lowElements = sorter.getLowTraceElements()
 		var marginalElements = sorter.getMarginalTraceElements()
 		var satisfactoryElements = sorter.getSatisfactoryTraceElements()
+		var moderateElements = [];
 		var highElements = sorter.getHighTraceElements()
 		var veryHighElements = sorter.getVeryHighTraceElements()
 		var extremelyHighElements = sorter.getExtremelyHighTraceElements()
 
 		var sortedElements = [];
 			sortedElements.push(new GroupedElements("satisfactory", satisfactoryElements));
+			sortedElements.push(new GroupedElements("moderate", moderateElements));
 			sortedElements.push(new GroupedElements("extremely high", extremelyHighElements));
 			sortedElements.push(new GroupedElements("very high", veryHighElements));
 			sortedElements.push(new GroupedElements("high", highElements));
@@ -49,14 +51,16 @@ function comment(x) {
 		var lowlowlow = "lowlowlow";
 
 		var allElementsLessThanSatisfactory = veryLowElements.concat(lowElements).concat(marginalElements);
-		var allElementsMoreThanSatisfactory = highElements.concat(veryHighElements).concat(extremelyHighElements);
+		var allElementsMoreThanSatisfactory = moderateElements.concat(highElements).concat(veryHighElements).concat(extremelyHighElements);
 
 		var nonSatisfactoryElements = veryLowElements.concat(lowElements).concat(marginalElements).concat(highElements).concat(veryHighElements).concat(extremelyHighElements)
 		var nonSatisfactoryElementsLessMolybdenum = veryLowElements.concat(lowElements).concat(marginalElements).concat(highElements).concat(veryHighElements).concat(extremelyHighElements)
 
 		var allElements = veryLowElements.concat(lowElements).concat(marginalElements).concat(satisfactoryElements).concat(highElements).concat(veryHighElements).concat(extremelyHighElements)
 
-		specificComments.removeMolybdenum(nonSatisfactoryElementsLessMolybdenum, satisfactoryElements, moLevel);
+		specificComments.removeMolybdenum(nonSatisfactoryElementsLessMolybdenum, satisfactoryElements, moLevel, moderateElements, molybdenum);
+
+		var allElementsMoreThanSatisfactory = moderateElements.concat(highElements).concat(veryHighElements).concat(extremelyHighElements);
 
 		document.getElementById("milkComments").innerHTML = elementComments.areThereNoValues(allElements)
 		+ elementComments.printAllElementComments(sortedElements, allElements, veryLowElements, lowElements, marginalElements) 
@@ -203,10 +207,10 @@ function comment(x) {
 		+ specificComments.firstIronManganeseComment(seperatedMetalElements, allElements)
 		+ specificComments.secondIronManganeseComment(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess)
 		+ specificComments.sulphateComment(so4Level)
-		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory) 
+		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory, naLevel, so4Level) 
 		+ specificComments.sodiumComment(naLevel)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
-		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel)
+		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh)
 		+ specificComments.noLead(allElements, pbLevel); 
 	
 	} else if (x === 'micro') {

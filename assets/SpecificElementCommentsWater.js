@@ -280,7 +280,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.sodiumSulphateComment = function(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory) {
+	this.sodiumSulphateComment = function(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory, naLevel, so4Level) {
 		if (arrayContainsElement(veryHighElements, "Sodium") === true && arrayContainsElement(highElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " The presence of Sodium Sulphate will have a laxative effect on the cows and increase looseness and reduce nutrient absorption. Although at this level it should not represent a challenge to cow health it will increase the risk of nutritional scours for pre-weaned calves less than 3 months in age.";
 		} else if (arrayContainsElement(veryHighElements, "Sodium") === true && arrayContainsElement(veryHighElements, "Sulphate") === true && forPoultry.checked === false) {
@@ -293,6 +293,9 @@ function SpecificElementCommentsWater(){
 		}
 		else if (arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " It should be noted that although the raised Sulphate level will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
+		}
+		else if (forPoultry.checked === true && naLevel > 50 && so4Level > 50){
+			return " Due to the combination of elevated Sodium and Sulphur this supply may have a negative effect on bird health and productivity.";
 		}
 		else {
 			return "";
@@ -375,7 +378,7 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel) {
+	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh) {
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {
