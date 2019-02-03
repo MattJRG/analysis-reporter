@@ -97,13 +97,13 @@ input[type=text]:focus {
 }
 
 .section2 {
-	padding-right: 20px;
-	padding-left: 60px;
+	/* padding-right: 20px; */
+	/* padding-left: 60px; */
 	padding-top: 30px;
 	padding-bottom: 30px;
 	font-family: Roboto;
 	font-size: 18px;
-	width: 550px;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -139,12 +139,8 @@ input[type=text]:focus {
 input[type=button] {
 	min-width: 200px;
 	background-color: #008CBA; 
-	/* background-color: none; */
-    /* color: black; */
     padding: 10px 10px;
     margin: 10px 10px 10px 10px;
-    /* border: 1px solid black; */
-    /* border-radius: 4px; */
     cursor: pointer;
     font-size: 18px;
 }
@@ -206,22 +202,20 @@ input[type=button]:hover {
 
 .article {
 	display: none;
-	width: 65%;
+	width: 85%;
 	margin-left: auto;
 	margin-right: auto;
-	/* background-color: white; */
 	padding-top: 1px;
-	min-width: 840px;
+	min-width: 500px;
+	max-width: 1300px;
 }
 
 .container {
 	background-color: #F9F9F9;
-	/* border: 5px solid black; */
-	/* border-radius: 10px; */
 	margin-left: auto;
 	margin-right: auto;
-	min-width: 840px;
-	max-width: 840px;
+	/* width: 85%; */
+	/* min-width: 500px; */
 	overflow: hidden;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	margin-bottom: 30px; 
@@ -229,15 +223,6 @@ input[type=button]:hover {
 }
 
 .userarea {
-	display: none;
-	/* background-color: lightblue; */
-	padding-top: 25px;
-	padding-bottom: 5px;
-	border-radius: 25px;
-	text-align: center;
-}
-
-.userareaMain {
 	display: none;
 	/* background-color: lightblue; */
 	padding-top: 25px;
@@ -279,6 +264,7 @@ img {
 
   .guideBox {
 	/* margin-top: 20px; */
+	padding-top: 3px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 480px;
@@ -305,7 +291,7 @@ ul {
 
 .navElement {
 	/* overflow: hidden; */
-	min-width: 840px;
+	min-width: 500px;
 	width: 100%;
 	height: 50px;
 	display: inline-block;
@@ -316,13 +302,12 @@ ul {
 }
 
 .navElement a {
-	width: 33.01%;
+	width: 33.333%;
 	height: 50px;
-	/* color: black; */
 	text-decoration: none;
 	text-align: center;
 	font-size: 18px;
-	display: inline-block;
+	float: left;
 	line-height: 50px;
 	font-weight: bold;
 	color: #090909;

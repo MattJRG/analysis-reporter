@@ -1,12 +1,13 @@
 function jquery() {
 	$('.article').fadeIn(1000);
-	$('.userareaMain').slideDown(1500);
+	$('.userarea').slideDown(1500);
 
-	$('.projects-button').on('click', function(){
-		//$(this).next().toggle();
-	  $(this).next().slideToggle(400);
-	  $(this).toggleClass('active');
-	  $(this).text('Projects Viewed!');
+	$('.navSquare').on('click', function(){
+		$('.guideBox').hide();
+		$('.userarea').hide();
+		$('.userarea').fadeIn(700);
+	//   $(this).toggleClass('active');
+	//   $(this).text('Projects Viewed!');
 	});
 }
 
@@ -214,20 +215,22 @@ function comment(x) {
 		+ specificComments.areThereNoValues(allElements, nonSatisfactoryElements, allElementsMoreThanRaised, raisedElements, primeSatisfactoryElements)
 		+ specificComments.sodiumChlorideComment(naLevel, clLevel, tdsLevel)
 		+ elementComments.printAllElementComments(sortedElements, allElements, raisedElements)
-		+ specificComments.sodiumChlorideCommentGeneral(naLevel, clLevel)
 		+ specificComments.magnesiumChlorideComment(allElementsMoreThanRaised, mgLevel, clLevel)
 		+ specificComments.seperateIronManganeseAluminium(allElementsMoreThanRaised, seperatedMetalElements)
 		+ specificComments.seperateAmmoniaNitratePotassium(allElementsMoreThanSatisfactory, ammoniaNitratePotassium)
 		+ specificComments.phosphorusComment(veryHighElements, highElements)
 		+ specificComments.firstIronManganeseComment(seperatedMetalElements, allElements)
 		+ specificComments.secondIronManganeseComment(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess)
-		+ specificComments.sulphateComment(so4Level)
+		+ specificComments.sodiumDMComment(naLevel)
+		+ specificComments.sodiumChlorideCommentGeneral(naLevel, clLevel)
 		+ specificComments.sodiumSulphateComment(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory, naLevel, so4Level) 
-		+ specificComments.sodiumComment(naLevel)
+		+ specificComments.sulphateComment(so4Level)
+		+ specificComments.sulphurDMComment(so4Level)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
-		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh)
-		+ specificComments.noLead(allElements, pbLevel)
-		+ specificComments.sulphurDMComment(so4Level); 
+		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh, so4Level)
+		+ specificComments.noLead(allElements, pbLevel);
+		; 
+		
 	
 	} else if (x === 'micro') {
 		var salLevel = parseFloat(document.getElementById("salmonellaMicro").value);
@@ -291,9 +294,12 @@ var microGuide = document.getElementById("microGuideBox");
 
 function toggleGuide(x) {
 	if (x.style.display === "none") {
-		x.style.display = "block";
+		$('.guideBox').slideDown(300);
+		// x.style.display = "block";
 	} else {
-		x.style.display = "none";
+		$('.guideBox').slideUp(300);
+		// x.style.display = "none";
+		
 	}
 }
 
@@ -376,15 +382,6 @@ function LiveUpdate(x) {
 	document.getElementById("hardnessWater").value = (parseFloat(document.getElementById("calciumWater").value)*2.497 + parseFloat(document.getElementById("magnesiumWater").value)*4.116).toFixed(0);
 	
 	
-	// if (caLevel.length === 0 && mgLevel.length === 0) {
-	// 		document.getElementById("hardnessWater").value = "Enter Ca & Mg";
-	// 	} else if (caLevel === false && mgLevel < 0) {
-	// 		document.getElementById("hardnessWater").value = "Enter Ca";
-	// 	} else if (mgLevel === false && caLevel < 0) {
-	// 		document.getElementById("hardnessWater").value = "Enter Mg";
-	// 	} else if (mgLevel < 0 && caLevel < 0) {
-	// 		document.getElementById("hardnessWater").value = (parseFloat(document.getElementById("calciumWater").value)*2.497 + parseFloat(document.getElementById("magnesiumWater").value)*4.116).toFixed(0);
-	// 	}
 	}
 }
 /*
@@ -436,6 +433,7 @@ function copyComments(x) {
 };
 
 function clearPage(x){
+
 	if (x === "milk") {
 		document.getElementById("milkComments").innerHTML = "";
 		document.getElementById("phosphorusMilk").value = "";

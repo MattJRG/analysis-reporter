@@ -270,15 +270,15 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.sodiumComment = function(naLevel) {
-		if (naLevel > 200 && naLevel < 300 && forPoultry.checked === false) {
-			return " In terms of dietary intake, the Sodium level is equivalent to increasing the typical dairy diet concentration by 0.10-0.15% DM, which represents about a 50% increase. Consequently, this contribution should be accounted for when formulating diets for Sodium (Salt).";
-		} else if (naLevel > 100 && naLevel <150 && forPoultry.checked === false) {
-			return " The Sodium intake from this water supply is equivalent to increasing the total dietary supply of a milking cow by about 0.15%DM. This contribution should be accounted for when formulating balancing mineral supplements or concentrates.";
-		} else {
-			return "";
-		}
-	}
+	// this.sodiumComment = function(naLevel) {
+	// 	if (naLevel > 200 && naLevel < 300 && forPoultry.checked === false) {
+	// 		return " In terms of dietary intake, the Sodium level is equivalent to increasing the typical dairy diet concentration by 0.10-0.15% DM, which represents about a 50% increase. Consequently, this contribution should be accounted for when formulating diets for Sodium (Salt).";
+	// 	} else if (naLevel > 100 && naLevel <150 && forPoultry.checked === false) {
+	// 		return " The Sodium intake from this water supply is equivalent to increasing the total dietary supply of a milking cow by about 0.15%DM. This contribution should be accounted for when formulating balancing mineral supplements or concentrates.";
+	// 	} else {
+	// 		return "";
+	// 	}
+	// }
 
 	this.sodiumSulphateComment = function(veryHighElements, raisedElements, highElements, allElementsMoreThanSatisfactory, naLevel, so4Level) {
 		if (arrayContainsElement(veryHighElements, "Sodium") === true && arrayContainsElement(highElements, "Sulphate") === true && forPoultry.checked === false) {
@@ -294,10 +294,13 @@ function SpecificElementCommentsWater(){
 		else if (arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === true && forPoultry.checked === false) {
 			return " It should be noted that although the raised Sulphate level will be well tolerated by adult stock there will be an increased risk of nutritional scours for pre-weaned calves less than 3 months in age.";
 		}
-		else if (forPoultry.checked === true && naLevel > 50 && so4Level > 50){
-			return " Due to the combination of elevated Sodium and Sulphur this supply may have a negative effect on bird health and productivity.";
-		}
-		else {
+		else if (forPoultry.checked === true && naLevel >= 50 && so4Level >= 50){
+			return " Due to the combination of elevated Sodium and Sulphur this supply will increase the chance of wet litter and may have a negative effect on bird health and performance.";
+		} else if (forPoultry.checked === true && naLevel >= 100 && so4Level >= 250) {
+			return " Due to the combination of high levels of Sodium and Sulphur this supply has a significant chance of causing wet litter and decreasing bird health performance.";
+		} else if (forPoultry.checked === true && naLevel >= 50 && so4Level >= 50){
+			return " Due to the combination of elevated Sodium and Sulphur this supply will increase the chance of wet litter and may have a negative effect on bird health and performance.";
+		} else {
 			return "";
 		}
 	}
@@ -311,7 +314,7 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.sodiumChlorideCommentGeneral = function(naLevel, clLevel) {
-		if (naLevel >= 200 && clLevel >= 350) {
+		if (naLevel >= 100 && clLevel >= 350 && forPoultry.checked === false) {
 			return " The Sodium Chloride level is equivalent to a Salt level of " + Math.round((naLevel + clLevel)/100)/10 + "g/litre (" + (Math.round((naLevel + clLevel)/100)/10/10).toFixed(2) + "%).";
 		} else {
 			return "";
@@ -327,26 +330,26 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.sulphurDMComment = function(so4Level) {
-		if (so4Level >= 250 && so4Level < 500 ) {
-			return " This high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
-		} else if (so4Level >= 500 && so4Level < 1000) {
-			return " This very high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
-		} else if (so4Level >= 1000) {
-			return " This very high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
+		if (so4Level >= 250 && so4Level < 500 && forPoultry.checked === false) {
+			return " This high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM.";
+		} else if (so4Level >= 500 && so4Level < 1000 && forPoultry.checked === false) {
+			return " This very high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM.";
+		} else if (so4Level >= 1000 && forPoultry.checked === false) {
+			return " This extremely high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM.";
 		} else {
-			return ""
+			return "";
 		}
 	}
 
 	this.sodiumDMComment = function(naLevel) {
-		if (naLevel >= 250 && naLevel < 500 ) {
-			return " This high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
-		} else if (naLevel >= 500 && naLevel < 1000) {
-			return " This very high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
-		} else if (naLevel >= 1000) {
-			return " This very high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
+		if (naLevel >= 100 && naLevel < 500 && forPoultry.checked === false) {
+			return " This high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM.";
+		} else if (naLevel >= 500 && naLevel < 1000 && forPoultry.checked === false) {
+			return " This very high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM.";
+		} else if (naLevel >= 1000 && forPoultry.checked === false) {
+			return " This extremely high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM.";
 		} else {
-			return ""
+			return "";
 		}
 	}
 
@@ -408,18 +411,34 @@ function SpecificElementCommentsWater(){
 		}
 	}
 
-	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh) {
+	this.summaryComment = function(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh, so4Level) {
 		if (allElements.length < 15) {
 			return "";
 		} else if (naLevel > 1500 && clLevel > 2500 && tdsLevel > 5000) {
 			return " On the basis of this analysis, this supply is not fit for livestock use and advice should be sought on appropriate treatment options designed to reduce the high Salt concentration. As this may involve considerable cost, an alternative	action would be to dilute this supply on a 50:50 basis with mains water and to remove any supplementary Sodium (salt) from feed materials and supplements.";
-		} else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Chloride") === true) {
-			return " As poultry have a limited tolerance to Salt this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
-		} else if (allElementsMoreThanHighLessSodium.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
+		} 
+		
+		else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel >= 450 || feLevel >= 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true && arrayContainsElement(allElementsMoreThanRaised, "Sulphur") === true) {
+			return " As poultry have a limited tolerance to Sodium and Sulphur this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
+		} 
+		
+		else if (forPoultry.checked === true && mnLevel < 450 && feLevel < 1000 && naLevel >= 50 && so4Level >= 50) {
+			return " Having taken account of these points, from a mineral perspective this supply is fit for poultry use. However, as poultry have a limited tolerance to Sodium and Sulphur, should issues arise that are believed to be linked to water quality advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the elevated Sodium and Sulphur levels.";
+		} 
+		
+		else if (forPoultry.checked === true && allElementsMoreThanHigh.length > 0 && mnLevel < 450 && feLevel < 1000 && arrayContainsElement(allElementsMoreThanRaised, "Sodium") === true) {
+			return " As poultry have a limited tolerance to Sodium this supply is not fit for poultry use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHigh, allElements.length);
+		} 
+		
+		else if (allElementsMoreThanHighLessSodium.length > 0 || mnLevel >= 450 || feLevel >= 1000) {
 			return this.summaryCommentHowever(naLevel) + " the basis of this analysis, this supply is not fit for " + this.livestockOrPoultry() + " use and advice should be sought, from your local water engineer on appropriate treatment options designed to reduce the very high " + this.elementComments.printElements(allElementsMoreThanHighLessSodium, allElements.length) + this.concentrationPlural(allElementsMoreThanHighLessSodium);
-		} else if (allElementsMoreThanRaised.length === 0 && arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === false) {
+		} 
+		
+		else if (allElementsMoreThanRaised.length === 0 && arrayContainsElement(raisedElements, "Sodium") === false && arrayContainsElement(raisedElements, "Sulphate") === false) {
 			return " Consequently, from a mineral perspective this supply is suitable for " + this.livestockOrPoultry() + " use."; //UNLESS Sodium or Sulphate is elevated attempted to fix above but needs testing
-		} else {
+		} 
+		
+		else {
 			return " Having taken account of these points, from a mineral perspective this supply is fit for " + this.livestockOrPoultry() + " use."; 
 		}
 	}
