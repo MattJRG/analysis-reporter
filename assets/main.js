@@ -1,3 +1,17 @@
+function jquery() {
+	$('.article').fadeIn(1000);
+	$('.userareaMain').slideDown(1500);
+
+	$('.projects-button').on('click', function(){
+		//$(this).next().toggle();
+	  $(this).next().slideToggle(400);
+	  $(this).toggleClass('active');
+	  $(this).text('Projects Viewed!');
+	});
+}
+
+
+
 function comment(x) {
 	if (x === 'milk') {
 		var pLevel = parseInt(document.getElementById("phosphorusMilk").value);
@@ -192,6 +206,7 @@ function comment(x) {
 		specificComments.removeSodium(allElementsMoreThanHighLessSodium, naLevel);
 
 		console.log(allElements);
+		console.log(sulphate);
 		
 		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel, hardnessLevel) 
 		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, naLevel)
@@ -211,7 +226,8 @@ function comment(x) {
 		+ specificComments.sodiumComment(naLevel)
 		+ specificComments.ammoniaComment(ammoniaNitratePotassium, allElements, nh4Level)
 		+ specificComments.summaryComment(allElementsMoreThanHighLessSodium, allElements, allElementsMoreThanRaised, mnLevel, feLevel, raisedElements, naLevel, clLevel, tdsLevel, allElementsMoreThanHigh)
-		+ specificComments.noLead(allElements, pbLevel); 
+		+ specificComments.noLead(allElements, pbLevel)
+		+ specificComments.sulphurDMComment(so4Level); 
 	
 	} else if (x === 'micro') {
 		var salLevel = parseFloat(document.getElementById("salmonellaMicro").value);
@@ -297,10 +313,12 @@ function togglePage(activeNav, activeApp, nav2, nav2App, nav3, nav3App, homeApp)
 	homeApp.style.display = "none";	
 
 	if (activeApp.style.display === "none") {
+		// activeApp.slideToggle(1500);
 		activeApp.style.display = "block";
 		nav2App.style.display = "none";
 		nav3App.style.display = "none";
 	} else if (activeApp.style.display === "block") {
+		// activeApp.slideToggle(1500);
 		activeApp.style.display = "block";
 		nav2App.style.display = "none";
 		nav3App.style.display = "none";
@@ -530,3 +548,5 @@ function googleTranslateElementInit() {
       layout: google.translate.TranslateElement.InlineLayout
     }, 'google_translate_element');
   }
+
+  $(document).ready(jquery);

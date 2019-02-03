@@ -308,7 +308,6 @@ function SpecificElementCommentsWater(){
 		} else {
 			return "";
 		}
-
 	}
 
 	this.sodiumChlorideCommentGeneral = function(naLevel, clLevel) {
@@ -317,7 +316,38 @@ function SpecificElementCommentsWater(){
 		} else {
 			return "";
 		}
+	}
 
+	this.sulphurDMCalc = function(so4Level) {
+		return ((((so4Level * 0.33)/1000)*110)/225).toFixed(2);
+	}
+
+	this.sodiumDMCalc = function(naLevel) {
+		return (((naLevel/1000)*110)/225).toFixed(2);
+	}
+
+	this.sulphurDMComment = function(so4Level) {
+		if (so4Level >= 250 && so4Level < 500 ) {
+			return " This high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
+		} else if (so4Level >= 500 && so4Level < 1000) {
+			return " This very high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
+		} else if (so4Level >= 1000) {
+			return " This very high Sulphate level is equivalent to raising the total dietary Sulphur level by " + this.sulphurDMCalc(so4Level) + "% DM, which will typically result in the overall dietary Sulphur level being within the range " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sulphurDMCalc(so4Level)) + 0.25).toFixed(2) + "% DM."
+		} else {
+			return ""
+		}
+	}
+
+	this.sodiumDMComment = function(naLevel) {
+		if (naLevel >= 250 && naLevel < 500 ) {
+			return " This high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
+		} else if (naLevel >= 500 && naLevel < 1000) {
+			return " This very high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
+		} else if (naLevel >= 1000) {
+			return " This very high Sodium level is equivalent to raising the total dietary Sodium level by " + this.sodiumDMCalc(naLevel) + "% DM, which will typically result in the overall dietary Sodium level being within the range " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.15).toFixed(2) + "% - " + (parseFloat(this.sodiumDMCalc(naLevel)) + 0.25).toFixed(2) + "% DM."
+		} else {
+			return ""
+		}
 	}
 
 	this.seperateAmmoniaNitratePotassium = function(allElementsMoreThanSatisfactory, ammoniaNitratePotassium) {
