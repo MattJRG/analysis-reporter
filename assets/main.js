@@ -1,18 +1,3 @@
-function jquery() {
-	$('.article').fadeIn(1000);
-	$('.userarea').slideDown(1500);
-
-	$('.navSquare').on('click', function(){
-		$('.guideBox').hide();
-		$('.userarea').hide();
-		$('.userarea').fadeIn(700);
-	//   $(this).toggleClass('active');
-	//   $(this).text('Projects Viewed!');
-	});
-}
-
-
-
 function comment(x) {
 	if (x === 'milk') {
 		var pLevel = parseInt(document.getElementById("phosphorusMilk").value);
@@ -63,7 +48,6 @@ function comment(x) {
 
 		var specificComments = new SpecificElementCommentsMilk();
 		var elementComments = new ElementCommentsMilk();
-		var lowlowlow = "lowlowlow";
 
 		var allElementsLessThanSatisfactory = veryLowElements.concat(lowElements).concat(marginalElements);
 		var allElementsMoreThanSatisfactory = moderateElements.concat(highElements).concat(veryHighElements).concat(extremelyHighElements);
@@ -181,8 +165,6 @@ function comment(x) {
 
 		var allElementsMoreThanHighLessSodium = veryHighElements.concat(extremelyHighElements);
 
-		var allElementsRaisedAndHigh = raisedElements.concat(highElements);
-
 		var seperatedMetalElements = [];
 
 		var ammoniaNitratePotassium = [];
@@ -205,9 +187,6 @@ function comment(x) {
 		var elementComments = new ElementCommentsWater();
 
 		specificComments.removeSodium(allElementsMoreThanHighLessSodium, naLevel);
-
-		console.log(allElements);
-		console.log(sulphate);
 		
 		document.getElementById("waterComments").innerHTML = specificComments.phInitialComment(primeSatisfactoryElements, primeRaisedElements, primeHighElements, primeVeryHighElements, phLevel, hardnessLevel) 
 		+ specificComments.hardnessComment(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, naLevel)
@@ -278,14 +257,26 @@ function comment(x) {
 	
 		var specificComments = new SpecificElementCommentsMicro();
 		var elementComments = new ElementCommentsMicro();
-	
-		console.log(extremelyHighElements);
-		console.log(satisfactoryElements);
 		
 		document.getElementById("microComments").innerHTML = specificComments.areThereNoValues(allElements) 
 		+ specificComments.mainComment(satisfactoryElements, raisedElements, highElements, veryHighElements, extremelyHighElements, allElements, colLevel, closLevel, ecolLevel, salLevel); 
 	}
 };
+
+
+function jquery() {
+	$('.article').fadeIn(1000);
+	$('.userarea').slideDown(1500);
+
+	$('.navSquare').on('click', function(){
+		$('.guideBox').hide();
+		$('.userarea').hide();
+		$('.userarea').fadeIn(700);
+	//   $(this).toggleClass('active');
+	//   $(this).text('Projects Viewed!');
+	});
+}
+
 
 var milkGuide = document.getElementById("milkGuideBox");
 var waterGuide = document.getElementById("waterGuideBox");
@@ -384,6 +375,7 @@ function LiveUpdate(x) {
 	
 	}
 }
+
 /*
 function showLiveStatus() {
 		var stsChkBx = document.getElementById("statusCheckbox");

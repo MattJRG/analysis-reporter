@@ -131,7 +131,6 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.hardnessComment = function(hardnessLevel, mgLevel, caLevel, primeSatisfactoryElements, primeHighElements, primeVeryHighElements, naLevel) {
-		console.log(hardnessLevel);
 
 		if (arrayContainsElement(primeHighElements, "pH") === true || (arrayContainsElement(primeVeryHighElements, "pH") === true)&& hardnessLevel < 175) {
 			return "which is very unusual given the “soft” nature of this supply. This analysis is not able to determine the source of this high pH. As it is outside the target pH for " + this.livestockOrPoultry() + ", there is a risk that it will reduce the efficiency of digestion and nutrient absorption.";
@@ -229,7 +228,6 @@ function SpecificElementCommentsWater(){
 	}
 
 	this.secondIronManganeseComment = function(allElementsMoreThanRaised, mnLevel, feLevel, allElementsRaisedAndLess) {
-		console.log(allElementsMoreThanRaised);
 		if (arrayContainsElement(allElementsMoreThanRaised, "Manganese") === true && mnLevel < 450 && arrayContainsElement(allElementsRaisedAndLess, "Iron") === true) {
 			return " To minimise these possible problems, the supply should be well aerated before " + this.livestockOrPoultry() + " have access to it.  This can be achieved by pumping into a header tank for example, which will oxidise the Manganese and thereby reduce its potentially deleterious effects.";
 		}
