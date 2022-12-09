@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Automatic Reporter</title>
-	<link href="css/main.css" rel="stylesheet" type="text/css" />﻿
+	<link href="assets/css/main.css" rel="stylesheet" type="text/css" />﻿
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="assets/favicon.ico">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
 <body>
@@ -23,14 +23,14 @@
 					<div class="section6">
 						<h3>Please select the type of sample you wish to generate comments for from the tabs above</h3>
 						<div class= "image">
-							<img src="TJlogo.bmp">
+							<img src="assets/TJlogo.bmp">
 							</div>
 					</div>
-				</div>	
+				</div>
 				<div class="milkApp" id="milk-app" style="display: none;">
 				<h3>Please enter milk trace element levels (ppb)</h3>
 				<div class="section5">
-					<button class="button guideButton" onclick="toggleGuide(milkGuide);">Show Guide
+					<button class="button guideButton" onclick="toggleGuide(milkGuide);">Show Guide</button>
 				</div>
 				<div class="guideBox" id="milkGuideBox" style="display: none;">
 						<h3><u>Guide</u></h3>
@@ -42,7 +42,7 @@
 									<li>Use the clear button to clear all data and comments</li>
 									<li>Use the copy button to copy the comments (Google Chrome Only)</li>
 								</ul>
-								<button class="button demoButton" onclick="demo('milk');">Demo App
+								<button class="button demoButton" onclick="demo('milk');">Demo App</button>
 							</div>
 				</div>
 				<form class="section1">
@@ -80,23 +80,24 @@
 							</label>	 -->
 					</div>
 					<div class="processButtons">
-						<button class="button" value="Generate Comments" onclick="comment('milk');">Generate Comments
-						<button class="button rightButton" value="Clear" onclick="clearPage('milk');">Clear
+						<button class="button" value="Generate Comments" onclick="comment('milk');">Generate Comments</button>
+						<button class="button rightButton" value="Clear" onclick="clearPage('milk');">Clear</button>
 					</div>
-					<h2>Comments</h2> 
+					<h2>Comments</h2>
 				<div class="section3">
 					<p contenteditable="true" id="milkComments" class="comments"></p>
 				</div>
 				<div class="section4">
-						<button class="button" onclick="copyComments('milk')"/>Copy
+					<button class="button" onclick="copyComments('milk')">Copy
 						<i style="padding-left: 10px;" class="far fa-copy"></i>
-					</div>
+					</button>
+				</div>
 				</div>
 
 				<div class="waterMinApp" id="water-app" style="display: none;">
 			<h3>Please enter water parameter levels</h3>
 				<div class="section5">
-					<button class="button guideButton" onclick="toggleGuide(waterGuide);">Show Guide
+					<button class="button guideButton" onclick="toggleGuide(waterGuide);">Show Guide</button>
 				</div>
 				<div class="guideBox" id="waterGuideBox" style="display: none;">
 						<h3><u>Guide</u></h3>
@@ -109,7 +110,7 @@
 									<li>Use the clear button to clear all data and comments</li>
 									<li>Use the copy button to copy the comments (Google Chrome Only)</li>
 								</ul>
-								<button class="button demoButton" onclick="demo('water');">Demo App
+								<button class="button demoButton" onclick="demo('water');">Demo App</button>
 							</div>
 				</div>
 				<form class="section1">
@@ -192,7 +193,7 @@
 					<div class="elementInput">
 						<h3>Boron</h3><p>(µg/l)</p> <input type="text" id="boronWater" onChange="LiveUpdate('water');"  placeholder="e.g. 10" value=>
 						<p class="elementStatus" id="BStatus">---</p>
-					</div>		
+					</div>
 					<div class="elementInput">
 						<h3>Total Hardness</h3><p>(mg/l CaCO³)</p> <input type="text" id="hardnessWater" onChange="LiveUpdate('water');" placeholder="e.g. 9" value=>
 						<p class="elementStatus" id="hardnessStatus">---</p>
@@ -202,18 +203,18 @@
 						<label class="checkContainer">is this water sample for poultry?
 								<input type="checkbox" name="PoultryCheckbox" id="poultryCheckbox">
 								<span class="checkmark"></span>
-						</label>	
+						</label>
 					</div>
 					<div class="processButtons">
-						<button class="button" value="Generate Comments" onclick="comment('water');">Generate Comments
-						<button class="button rightButton"  value="Clear" onclick="clearPage('water');">Clear
+						<button class="button" value="Generate Comments" onclick="comment('water');">Generate Comments</button>
+						<button class="button rightButton"  value="Clear" onclick="clearPage('water');">Clear</button>
 					</div>
-					<h2>Comments</h2> 
+					<h2>Comments</h2>
 				<div class="section3">
 					<p contenteditable="true" id="waterComments" class="comments"></p>
 				</div>
 				<div class="section4">
-					<button class="button" onclick="copyComments('water')">Copy
+					<button class="button" onclick="copyComments('water')">Copy</button>
 					<i style="padding-left: 10px;" class="far fa-copy"></i>
 				</div>
 				</div>
@@ -221,7 +222,7 @@
 				<div class="microWaterApp" id="micro-app" style="display: none;">
 			<h3>Please enter water microbe levels</h3>
 				<div class="section5">
-					<button class="button guideButton" onclick="toggleGuide(microGuide);">Show Guide
+					<button class="button guideButton" onclick="toggleGuide(microGuide);">Show Guide</button>
 				</div>
 				<div class="guideBox" id="microGuideBox" style="display: none;">
 					<h3><u>Guide</u></h3>
@@ -234,9 +235,9 @@
 								<li>Use the copy button to copy the comments (Google Chrome Only)</li>
 								<li>If "count is too high" enter 10000 for that parameter</li>
 							</ul>
-							<button class="button demoButton" onclick="demo('micro');">Demo App
+							<button class="button demoButton" onclick="demo('micro');">Demo App</button>
 						</div>
-				</div>	
+				</div>
 				<form class="section1">
 					<div class="elementInput">
 						<h3>Salmonella</h3><p>(in 100ml)</p> <input type="text" id="salmonellaMicro" placeholder="e.g. 7.4" value=>
@@ -264,41 +265,42 @@
 							</label>
 					</div>
 					<div class="processButtons">
-					<button class="button" value="Generate Comments" onclick="comment('micro');">Generate Comments
-					<button class="button rightButton" value="Clear" onclick="clearPage('micro');">Clear
+					<button class="button" value="Generate Comments" onclick="comment('micro');">Generate Comments</button>
+						<button class="button rightButton" value="Clear" onclick="clearPage('micro');">Clear</button>
 				</div>
-				<h2>Comments</h2> 
+				<h2>Comments</h2>
 				<div class="section3">
 					<p contenteditable="true" id="microComments" class="comments"></p>
 				</div>
 				<div class="section4">
 					<button class="button" onclick="copyComments('micro')">Copy
-					<i style="padding-left: 10px;" class="far fa-copy"></i>
+						<i style="padding-left: 10px;" class="far fa-copy"></i>
+					</button>
 				</div>
 				</div>
 			</div>
 				</div>
 		</div>
-	</div>	
+	</div>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
-	<script src="TraceElementSorterMilk.js"></script>
-	<script src="TraceElementSorterWater.js"></script>
-	<script src="TraceElementSorterMicro.js"></script>
-	<script src='GroupedElements.js'></script>
-	<script src='TraceElementMilk.js'></script>
-	<script src='TraceElementWater.js'></script>
-	<script src='TraceElementMicro.js'></script>
-	<script src="SpecificElementCommentsMilk.js"></script>
-	<script src="SpecificElementCommentsWater.js"></script>
-	<script src="SpecificElementCommentsMicro.js"></script>
-	<script src="ElementCommentsMilk.js"></script>
-	<script src="ElementCommentsWater.js"></script>
-	<script src="ElementCommentsMicro.js"></script>
-	<script src='LiveElementStatus.js'></script>
-	<script src='main.js'></script>
+	<script src="assets/TraceElementSorterMilk.js"></script>
+	<script src="assets/TraceElementSorterWater.js"></script>
+	<script src="assets/TraceElementSorterMicro.js"></script>
+	<script src='assets/GroupedElements.js'></script>
+	<script src='assets/TraceElementMilk.js'></script>
+	<script src='assets/TraceElementWater.js'></script>
+	<script src='assets/TraceElementMicro.js'></script>
+	<script src="assets/SpecificElementCommentsMilk.js"></script>
+	<script src="assets/SpecificElementCommentsWater.js"></script>
+	<script src="assets/SpecificElementCommentsMicro.js"></script>
+	<script src="assets/ElementCommentsMilk.js"></script>
+	<script src="assets/ElementCommentsWater.js"></script>
+	<script src="assets/ElementCommentsMicro.js"></script>
+	<script src='assets/LiveElementStatus.js'></script>
+	<script src='assets/main.js'></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!--	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
 </body>
 </html>
